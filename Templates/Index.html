@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block menu %}
+
+   
+{% endblock menu %}
+{% block content %}
+
+<div class="sect sect--padding-top">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+      <div class="site">
+        <h1 class="site__title">We Welcome {% if user.is_anonymous %}
+          You
+          {% else %}
+          {{request.user.first_name}} {{request.user.last_name}} 
+          {% endif %}
+           to Unit of AgriUpdate</h1>
+        <h2 class="site__subtitle">Manage analytics like a boss</h2>
+        <div class="site__box-link">
+          <a class="btn btn--width" href="{% url 'login' %}">Pricing</a>
+          <a class="btn btn--revert btn--width" href="{% url 'Contact' %}">Contact</a>
+        </div>
+        <img class="site__img" src="https://image.ibb.co/c7grYb/image3015.png">
+      </div>
+      </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,66 @@
+{% extends 'base.html' %}{%load static%}
+
+{% block title %} ~ Login{% endblock title %}
+
+{% block content %}
+
+<div class="sect sect--padding-bottom">
+  <div class="container">
+    <div class="row">
+      <h1 class="row__title">Login</h1>
+      <h2 class="row__sub">Feel free to ask any questions</h2>
+    </div>
+    <div class="row row--margin">
+      <div class="col-md-1"></div>
+      <div class="col-md-4">
+        <div class="contacts">
+          <a href="{% url 'index' %}" class="contacts__link"><img src="{% static 'Images/favicon.png' %}">
+            <h1 class="contacts_title-ag">AgriUpdate <span class="contacts--light">Pvt. Ltd.</span></h1>
+          </a>
+          <p class="contacts__address">
+            198, Near K.K.V. Hall,<br>
+            150 Feet Ring Road,&nbsp;Rajkot<br>
+            Gujarat &nbsp;India&nbsp;360005
+          </p>
+          <p class="contacts__info">
+            Phone No.&nbsp; <a href="tel:9664966496" class="contacts__info-link">+91 9664966496</a>
+          </p>
+          <p class="contacts__info">
+            Email &nbsp;<a href="mailto:info@agriupdate.in" class="contacts__info-link"> info@agriupdate.in</a>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <form id="contact" class="form" action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" placeholder="Username" class="form__field form__text"
+              style="visibility: hidden;"></input>
+            <input type="text" placeholder="Username" class="form__field form__text" name="username"></input><br><br>
+            <input type="password" placeholder="Password" class="form__field form__text" name="password"></input>
+          </div>
+          <div class="form-group" style="visibility: hidden;">
+            <div class="form__field--half">
+              <input type="text" placeholder="Email address*" class="form__field form__text"></input>
+            </div>
+          
+          </div>
+          <div class="form-group">
+            <button class="btn btn--up btn--width" type="submit">Login</button>
+          </div>
+            <div class="form-group" style="text-align:center ;"><br>
+              <p class="contacts__info">
+                Click here to join the &nbsp;<a href="{% url 'register' %}" class="contacts__info-link">  AgriUpdate</a>
+              </p>
+           
+          </div>
+        </form>
+      </div>
+      <div class="col-md-1"></div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock content %}
