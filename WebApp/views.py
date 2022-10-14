@@ -1,8 +1,11 @@
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import SignUpForm
+from .forms import SignUpForm,clientform
+from .models import client
+
 
 # Create your views here.
 
@@ -82,3 +85,33 @@ def register(request):
     else:
         form = SignUpForm()
     return render(request, 'register.html', {'form': form})
+
+def emp(request):  
+    if request.method == "POST":  
+        form = clientform(request.POST)  
+        if form.is_valid():  
+            try:  
+                form.save()  
+                return redirect('login')  
+            except:  
+                pass  
+    else:  
+        form = clientform()  
+    return render(request,'Staff\index.html',{'form':form})  
+def showme(request):  
+    clients = client.objects.all()  
+    return render(request,"Staff\show.html",{'client':clients})  
+def edit(request, id):  
+    clients = client.objects.get(id=id)  
+    return render(request,'Staff\edit.html', {'client':clients})  
+def update(request, id):  
+    clients = client.objects.get(id=id)  
+    form = clientform(request.POST, instance = clients)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("showme")  
+    return render(request, 'Staff\edit.html', {'employee': clients})  
+def destroy(request, id):  
+    employee = client.objects.get(id=id)  
+    employee.delete()  
+    return redirect("showme")

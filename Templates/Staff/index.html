@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block title %} ~ Form{% endblock title %}
+
+{% block content %}
+
+<form method="post" style="margin-right:20%;margin-left: 20%;">
+    {% csrf_token %}
+    {% for field in form %}
+    <p>
+        {{ field.label }}
+        {{ field }}
+        <span>
+          {% if field.errors %}
+            {% for error in field.errors %}
+              {{ error }}
+            {% endfor %}
+          {% endif %}
+        </span>
+      </p>
+    {% endfor %}
+    <button type="submit">Submit</button>
+
+{% endblock content %}
