@@ -1,7 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import client
+from .models import Customer,Topic
+from bootstrap_datepicker_plus.widgets import DatePickerInput
+
+
 
 
 class SignUpForm(UserCreationForm):
@@ -21,11 +24,32 @@ class SignUpForm(UserCreationForm):
 
 class Meta:
     model = User
-    fields = ['username', 'first_name', 'last_name',
-              'email', 'password1', 'password2', ]
+    fields = "__all__"
 
-class clientform(forms.ModelForm):
-    
+class Customerform(forms.ModelForm):
+    First_name = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'First Name',  'class': 'form__field form__text', }))
+    Last_name = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Last Name',  'class': 'form__field form__text'}))
+    Address = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Address',  'class': 'form__field form__text'}))
+    DOB = forms.DateField(widget=forms.DateInput( 
+        attrs={'placeholder': 'Date Of Birth',  'class': 'form__field form__text'}))
+    Email = forms.EmailField(widget=forms.EmailInput(
+        attrs={'placeholder': 'Email',  'class': 'form__field form__text'}))
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'placeholder': 'Password',  'class': 'form__field form__text'}))
+    Contact = forms.CharField(widget=forms.NumberInput(
+        attrs={'placeholder': 'Contact',  'class': 'form__field form__text'}))
+   
     class Meta:
-        model = client
+        model = Customer
+        fields ="__all__"
+
+class Topicform(forms.ModelForm):
+    Title = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Enter New Topic',  'class': 'form__field form__text', }))
+
+    class Meta:
+        model = Topic
         fields ="__all__"

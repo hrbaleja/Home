@@ -1,10 +1,17 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import client
-class clientAdmin(admin.ModelAdmin):
-    list_display = ('client_First_name', 'client_lname','client_address','client_dobdate','client_email','client_contact')
-# Register your models here.
+from .models import Customer, Topic ,Service
 
 
-admin.site.register(client,clientAdmin)
+
+class CustomerAdmin(admin.ModelAdmin):
+    list_display = ('id','First_name', 'Last_name','Address','DOB','Email','Contact')
+admin.site.register(Customer,CustomerAdmin)
+
+
+admin.site.register(Topic)
+
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('id','title', 'image','people','discount','price','lista','listb','listc','listd','liste')
+admin.site.register(Service,ServiceAdmin)

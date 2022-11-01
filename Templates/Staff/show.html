@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 {%load static%}
 {% block title %} ~ Show{% endblock title %}
-
 {% block content %}
-<table>
+<style>
+    #datat {border-collapse: collapse;width: 80%; margin-left:10%;margin-right:10% ; }    
+    #datat td, #datat th {border: 1px solid #ddd;padding: 8px;}    
+    #datat tr:nth-child(even){background-color: #f2f2f2;}    
+    #datat tr:hover {background-color: #ddd;}    
+    #datat th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #d9edfe;color: black;}
+</style>
+<table id="datat">
     <thead>
-        <tr>
-            <th>Employee ID</th>
-            <th>Employee Name</th>
-            <th>Employee Email</th>
-            <th>Employee Contact</th>
+            <tr>
+            <th>ID</th>
+            <th>Name</th>            
+            <th>Address</th>
+            <th>Date Of Birth</th>
+            <th>Email</th>
+            <th>Contact No.</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        {% for employee in employees %}
+        {% for Customers in Customer %}
         <tr>
-            <td>{{ employee.eid }}</td>
-            <td>{{employee.ename}}</td>
-            <td>{{employee.eemail}}</td>
-            <td>{{employee.econtact}}</td>
+            <td>{{ Customers.id }}</td>
+            <td>{{Customers.First_name}}&nbsp;&nbsp;{{Customers.Last_name}}</td>
+            <td>{{Customers.Address}}</td>
+            <td>{{Customers.DOBdate}}</td>
+            <td>{{Customers.Email}}</td>
+            <td>{{Customers.Contact}}</td>
             <td>
-                <a href="/edit/{{ employee.id }}">Edit</a>
-                <a href="/delete/{{employee.id}}">Delete</a>
+                <a href="/edit/{{ Customers.id }}">Edit</a>&nbsp;&nbsp;
+                <a href="/delete/{{Customers.id}}">Delete</a>
             </td>
         </tr>
         {% endfor %}
@@ -30,5 +40,5 @@
 </table>
 <br>
 <br>
-<button><a style="color:white;" href="/emp">Add New Record</a></button>
+<button class="btn btn--width"><a  href="/emp" style="color: white">Add New</a></button>
 {% endblock content %}

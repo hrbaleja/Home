@@ -1,10 +1,12 @@
 
+from datetime import datetime
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .forms import SignUpForm,clientform
-from .models import client
+from .forms import SignUpForm, Customerform,Topicform
+from .models import Customer, Topic
 
 
 # Create your views here.
@@ -55,14 +57,24 @@ def logoutUser(request):
 
 
 def office(request):
-    if request.user.is_anonymous:
-        return redirect("login")
-    return render(request, "Office\index.html")
+   
+    if request.method == "POST":
+        form = Topicform(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('office')
+            except:
+                pass
+    Topics = Topic.objects.all()
+    return render(request, "Office\index.html", {'Topic': Topics})
+    
 
 
 def client(request):
     if request.user.is_anonymous:
         return redirect("login")
+    
     return render(request, "Client\index.html")
 
 
@@ -86,32 +98,87 @@ def register(request):
         form = SignUpForm()
     return render(request, 'register.html', {'form': form})
 
-def emp(request):  
-    if request.method == "POST":  
-        form = clientform(request.POST)  
-        if form.is_valid():  
-            try:  
-                form.save()  
-                return redirect('login')  
-            except:  
-                pass  
-    else:  
-        form = clientform()  
-    return render(request,'Staff\index.html',{'form':form})  
-def showme(request):  
-    clients = client.objects.all()  
-    return render(request,"Staff\show.html",{'client':clients})  
-def edit(request, id):  
-    clients = client.objects.get(id=id)  
-    return render(request,'Staff\edit.html', {'client':clients})  
-def update(request, id):  
-    clients = client.objects.get(id=id)  
-    form = clientform(request.POST, instance = clients)  
-    if form.is_valid():  
-        form.save()  
-        return redirect("showme")  
-    return render(request, 'Staff\edit.html', {'employee': clients})  
-def destroy(request, id):  
-    employee = client.objects.get(id=id)  
-    employee.delete()  
+
+def emp(request):
+    if request.method == "POST":
+        form = Customerform(request.POST)
+        if form.is_valid():
+            try:
+                form.save()
+                return redirect('showme')
+            except:
+                pass
+    else:
+        form = Customerform()
+    return render(request, 'Staff\index.html', {'form': form})
+
+
+def showme(request):
+    Customers = Customer.objects.all()
+    return render(request, "Staff\show.html", {'Customer': Customers})
+
+
+def edit(request, id):
+    Customers = Customer.objects.get(id=id)    
+    return render(request, 'Staff\edit.html', {'Customer': Customers})
+
+
+def update(request, id):
+    Customers = Customer.objects.get(id=id)
+    print(Customers)
+    form = Customerform(request.POST, instance=Customers)
+    if form.is_valid():
+        form.save()
+        return redirect("showme")
+    return render(request, 'Staff\edit.html', {'Customer': Customers})
+
+
+def destroy(request, id):
+    Customers = Customer.objects.get(id=id)
+    Customers.delete()
     return redirect("showme")
+
+
+
+# report mate no code
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+from datetime import datetime
+from reportlab.lib.utils import ImageReader
+from reportlab.lib.pagesizes import  A4
+from reportlab.lib.units import inch
+
+
+def Brochure(request):    
+    # Create a file-like buffer to receive PDF data.
+    buffer = io.BytesIO()
+    # Create the PDF object, using the buffer as its "file."
+    p = canvas.Canvas(buffer)
+    # Draw things on the PDF. Here's where the PDF generation happens.
+    # See the ReportLab documentation for the full list of functionality.
+       
+    # Close the PDF object cleanly, and we're done.
+    p.translate(inch,inch)
+    # define a large font
+    p.setFont("Helvetica", 14)
+    # choose some colors
+   
+
+    my_image = ImageReader('Static/Images/favicon.png')
+    p.drawImage(my_image, 10, 600, mask='auto')
+    ts = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')  
+    p.drawString( 0,700,ts )
+    p.drawString(100, 100,"Hello World")
+    p.setTitle('Brochure')
+    p.showPage() 
+    p.save() 
+
+    # Show the result to the user    
+ 
+    # FileResponse sets the Content-Disposition header so that browsers
+    # present the option to save the file.
+    buffer.seek(0)   
+    return FileResponse(buffer, as_attachment=True, filename="Brochure.pdf")
+
+    

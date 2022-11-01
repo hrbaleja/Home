@@ -35,6 +35,8 @@ INSTALLED_APPS = [
     'admin_interface',
     'colorfield',
 
+    'bootstrap_datepicker_plus',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

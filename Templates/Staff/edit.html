@@ -1,45 +1,90 @@
 {% extends 'base.html' %}
 {%load static%}
 {% block title %} ~ Edit{% endblock title %}
-
 {% block content %}
-
-<form method="POST" action="/update/{{employee.id}}">
+<form method="POST" action="/update/{{Customer.id}}">
     {% csrf_token %}
+
+
+    <div>          
+     <h3>Update Details</h3>   
+    </div>  
     <div>
-        <br>
-        <p>
-            <h3>Update Details</h3>
-        </p>
-    </div>
-    <div>
-        <p>Employee Id:</p>
+        <p>First  Name:</p>
         <div>
-            <input type="text" name="eid" value="{{employee.eid}}" />
+            <input type="text" name="First_name" value="{{Customer.First_name}}" />
         </div>
     </div>
     <div>
-        <p>Employee Name:</p>
+        <p>Last Name :</p>
         <div>
-            <input type="text" name="ename" value="{{employee.ename}}" />
+            <input type="text" name="Last_name" value="{{Customer.Last_name}}" />
         </div>
     </div>
     <div>
-        <p>Employee Email :</p>
+        <p>Address:</p>
         <div>
-            <input type="email" name="eemail" value="{{employee.eemail}}" />
+            <input type="text" name="Address" value="{{Customer.Address}}" />
         </div>
     </div>
     <div>
-        <p>Employee Contact:</p>
+        <p>DOBdate:</p>
         <div>
-            <input type="text" name="econtact" value="{{employee.econtact}}" />
+            <input type="text" name="DOBdate" value="{{Customer.DOBdate}}" />
+        </div>
+    </div>
+    <div>
+        <p>Email:</p>
+        <div>
+            <input type="text" name="Email" value="{{Customer.Email}}" />
+        </div>
+    </div>
+    <div>
+        <p>password:</p>
+        <div>
+            <input type="text" name="password" value="{{Customer.password}}" />
+        </div>
+    </div>
+    <div>
+        <p>Contact:</p>
+        <div>
+            <input type="text"  name="Contact" value="{{Customer.Contact}}" />
         </div>
     </div>
     <div>
         <br>
         <button type="submit">Update</button>
     </div>
+    
 </form>
 
+     
+          <h1 class="row__title">Register</h1>
+  
+          <div class="col-md-12">
+            <div class="site">
+              <h2 class="site__subtitle">Create an AgriUpdate Account</h2>
+  
+              <form method="post" style="margin-right:20%;margin-left: 20%;">
+                {% csrf_token %}
+                {% for field in form %}
+                <p>              
+                  {{ field }}
+                  {% for error in field.errors %}
+                <p style="color: red">{{ error }}</p>
+                {% endfor %}
+                </p>
+                {% endfor %}
+                <button type="submit" class="btn btn--width">Sign up</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+
 {% endblock content %}
+
+
+  

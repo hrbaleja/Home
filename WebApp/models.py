@@ -19,15 +19,33 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
-class client(models.Model):  
-    client_First_name = models.CharField(max_length=100)  
-    client_lname = models.CharField(max_length=100)
-    client_address = models.CharField(max_length=100)  
-    client_dobdate = models.DateField()
-    client_email = models.EmailField()
-    client_password = models.CharField(max_length=100)  
-    client_contact = models.CharField(max_length=15) 
+class Customer(models.Model):  
+    First_name = models.CharField(max_length=100)  
+    Last_name = models.CharField(max_length=100)
+    Address = models.CharField(max_length=100)  
+    DOB = models.DateField()
+    Email = models.EmailField()
+    password = models.CharField(max_length=50)  
+    Contact = models.CharField(max_length=10) 
 
-    
     class Meta:  
-        db_table = "client" 
+        db_table = "Customer" 
+
+class Topic(models.Model):  
+    Title = models.CharField(max_length=100)     
+    
+    def __str__(self):
+        return self.Title
+
+
+class Service(models.Model):
+    image=models.ImageField(upload_to='Dataimage', blank=True)
+    title=models.CharField(max_length=100)
+    people=models.CharField(max_length=10)
+    discount=models.CharField(max_length=10)
+    price=models.CharField(max_length=10)
+    lista=models.CharField(max_length=100)
+    listb=models.CharField(max_length=100)
+    listc=models.CharField(max_length=100)
+    listd=models.CharField(max_length=100,blank=True)
+    liste=models.CharField(max_length=100,blank=True)
