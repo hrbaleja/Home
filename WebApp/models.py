@@ -40,12 +40,12 @@ class Topic(models.Model):
         return self.Title
 
 
-class Service(models.Model):
+class ourservice(models.Model):
     image=models.ImageField(upload_to='Dataimage', blank=True)
     title=models.CharField(max_length=100)
     people=models.CharField(max_length=10)
     discount=models.CharField(max_length=10)
-    price=models.CharField(max_length=10)
+    price=models.CharField( max_length=10)
     lista=models.CharField(max_length=100)
     listb=models.CharField(max_length=100)
     listc=models.CharField(max_length=100)
@@ -54,3 +54,28 @@ class Service(models.Model):
 
     def __str__(self):
         return self.title
+
+class ourArea(models.Model):
+    image=models.ImageField(upload_to='Areaimage')
+    Title=models.CharField(max_length=100)
+    Category=models.CharField(max_length=50)
+    Group=models.CharField(max_length=50)
+    Time=models.CharField( max_length=10)
+    Desc=models.CharField(max_length=500)
+  
+
+    def __str__(self):
+        return self.Title
+
+class Contactus(models.Model):
+    Topic=models.CharField(max_length=50,blank=True)
+    First_Name=models.CharField(max_length=50)
+    Last_Name=models.CharField(max_length=50)
+    Email=models.EmailField()
+    Contact=models.CharField(max_length=10)
+    Message=models.CharField(max_length=500)
+
+    def __str__(self):
+        return self.First_Name
+
+

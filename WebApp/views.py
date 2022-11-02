@@ -6,7 +6,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import SignUpForm, Customerform,Topicform
-from .models import Customer, Topic
+from .models import Customer, Topic, ourservice,ourArea,Contactus
 
 
 # Create your views here.
@@ -21,16 +21,32 @@ def About(request):
 
 
 def Contact(request):
-    return render(request, "Contact.html")
+        if request.method == 'POST':
+            Topic = request.POST['Topic']
+            First_Name = request.POST['First_Name']
+            Last_Name = request.POST['Last_Name']
+            Email = request.POST['Email']
+            Contact = request.POST['Contact']
+            Message = request.POST['Message']           
+            Query = Contactus.objects.create(
+            Topic=Topic, First_Name=First_Name, Last_Name=Last_Name, Email=Email, Contact=Contact,Message=Message)
+            Query.save()
+            messages.info(request, "Thank you for getting in touch !  ")
+            return redirect('Contact')
+        else:           
+            return render(request, "Contact.html")
 
 
 def Service(request):
-    return render(request, "Service.html")
+    prg = ourservice.objects.all()   
+    return render(request, "Service.html",{'ourservice': prg})
+    
 
 
 def Area(request):
-    return render(request, "Area.html")
-
+    Areao = ourArea.objects.all()   
+    return render(request, "Area.html",{'ourArea': Areao})
+    
 
 def u_login(request):
     if request.method == "POST":
@@ -46,7 +62,6 @@ def u_login(request):
             # Return an 'invalid login' error message.
             messages.error(request, "Invalid username or password.")
             return render(request, 'Client/Login.html')
-
     return render(request, 'Client/Login.html')
 
 
@@ -56,8 +71,7 @@ def logoutUser(request):
     return redirect("login")
 
 
-def office(request):
-   
+def office(request):   
     if request.method == "POST":
         form = Topicform(request.POST)
         if form.is_valid():
@@ -67,14 +81,15 @@ def office(request):
             except:
                 pass
     Topics = Topic.objects.all()
-    return render(request, "Office\index.html", {'Topic': Topics})
+    Contacts=Contactus.objects.all()
+    context ={'Topic': Topics,'Contactus':Contacts}
+    return render(request, "Office\index.html", context )
     
 
 
 def client(request):
     if request.user.is_anonymous:
-        return redirect("login")
-    
+        return redirect("login")    
     return render(request, "Client\index.html")
 
 
@@ -91,9 +106,7 @@ def register(request):
         user.save()
         messages.info(
             request, "Account created successfully please login again")
-
         return redirect('login')
-
     else:
         form = SignUpForm()
     return render(request, 'register.html', {'form': form})
@@ -154,17 +167,10 @@ def Brochure(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
     # Create the PDF object, using the buffer as its "file."
-    p = canvas.Canvas(buffer)
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-       
-    # Close the PDF object cleanly, and we're done.
+    p = canvas.Canvas(buffer)    
     p.translate(inch,inch)
     # define a large font
-    p.setFont("Helvetica", 14)
-    # choose some colors
-   
-
+    p.setFont("Helvetica", 14)    
     my_image = ImageReader('Static/Images/favicon.png')
     p.drawImage(my_image, 10, 600, mask='auto')
     ts = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S.%f')  
@@ -173,12 +179,10 @@ def Brochure(request):
     p.setTitle('Brochure')
     p.showPage() 
     p.save() 
-
-    # Show the result to the user    
- 
-    # FileResponse sets the Content-Disposition header so that browsers
-    # present the option to save the file.
     buffer.seek(0)   
     return FileResponse(buffer, as_attachment=True, filename="Brochure.pdf")
 
     
+def info(request):
+    prg = ourservice.objects.all()   
+    return render(request, "Info.html",{'ourservice': prg})

@@ -16,6 +16,7 @@ urlpatterns = [
   path('office', views.office,name="office"),
   path('client', views.client,name="client"),
   path('register',views.register, name = 'register') ,
+  path('info', views.info, name='info'),
 
   path('emp', views.emp),  
   path('showme',views.showme,name = 'showme'),  
@@ -27,3 +28,9 @@ urlpatterns = [
  
     
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

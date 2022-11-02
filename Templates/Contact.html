@@ -36,7 +36,9 @@
           </div>
         </div>
         <div class="col-md-6">
-          <form id="contact" class="form">
+          <form method="post" id="contact" class="form">
+            {% csrf_token %}
+          
             <div class="form-group">
               <select class="form__field form__select">
                 <option selected value>Choose topic*</option>
@@ -44,26 +46,33 @@
                 <option value=2>Success Stories</option>
               </select>
               </div>
+              <div class="form-group">
+                
+               <input name="Topic" type="text" placeholder="Topic*" class="form__field form__text"></input>
+             
+             
+             </div>
+
              <div class="form-group">
                <div class="form__field--half">
-              <input type="text" placeholder="Name*" class="form__field form__text"></input>
+              <input name="First_Name" type="text" placeholder="Name*" class="form__field form__text"></input>
                </div>
             <div class="form__field--half">
-            <input type="text" placeholder="Surname" class="form__field form__text"></input>
+            <input name="Last_Name" type="text" placeholder="Surname" class="form__field form__text"></input>
             </div>
             </div>
         
           <div class="form-group">
             <div class="form__field--half">
-              <input type="text" placeholder="Email address*" class="form__field form__text"></input>
+              <input name="Email" type="text" placeholder="Email address*" class="form__field form__text"></input>
             </div>
            <div class="form__field--half">
-            <input type="text" placeholder="Phone number" class="form__field form__text"></input>
+            <input name="Contact" type="text" placeholder="Phone number" class="form__field form__text"></input>
       </div>
             </div>
     
             <div class="form-group">
-              <textarea type="text" placeholder="Your messsage*" class="form__field form__textarea"></textarea>
+              <textarea name="Message" type="text" placeholder="Your messsage*" class="form__field form__textarea"></textarea>
               <button class="btn btn--up btn--width" type="submit">Submit</button>
             </div>
           </form>

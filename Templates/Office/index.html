@@ -7,32 +7,44 @@
 {% block content %}
 
 <style>
-    #datat {border-collapse: collapse;width: 100%; }    
+    #datat {border-collapse: collapse;width: 800%; margin-left:10%;margin-right:10% ; }    
     #datat td, #datat th {border: 1px solid #ddd;padding: 8px;}    
     #datat tr:nth-child(even){background-color: #f2f2f2;}    
     #datat tr:hover {background-color: #ddd;}    
-    #datat th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #ebeef8;color: white;}
+    #datat th {padding-top: 12px;padding-bottom: 12px;text-align: left;background-color: #d9edfe;color: black;}
 </style>
-<form method="post" style="margin-right:20%;margin-left: 20%;">
-    {% csrf_token %}
-    {% for field in form %}
-    <p>
-      {{ field.label}}  
-      {{ field }}
-      {% for error in field.errors %}
-    <p style="color: red">{{ error }}</p>
-    {% endfor %}
-    </p>
-    {% endfor %}
-    <button type="submit" class="btn btn--width">Add</button>
-  </form>
-
+<div class="container">
+<table>
+    <thead id="datat">
+            <tr>
+            <th> ID</th>
+            <th> Name</th>
+            <th>Email</th>
+            <th>Contact No.</th>
+            <th>Message</th>      
+           
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Topics in Contactus %}
+        <tr>
+            <td>{{ Topics.id }}</td>
+            <td>{{Topics.First_Name}} {{Topics.Last_Name}}</td>
+            <td>{{Topics.Email}}</td> 
+            <td>{{Topics.Contact}}</td> 
+            <td>{{Topics.Message}}</td>           
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<span><span><span><span><span><span><span><span><span><span><span>
 <table>
     <thead id="datat">
             <tr>
             <th>Topics ID</th>
-            <th>Topics Name</th>
-           
+            <th>Topics Name</th>           
             <th>Action</th>
         </tr>
     </thead>
@@ -49,6 +61,5 @@
         {% endfor %}
     </tbody>
 </table>
-
-
+</div>
 {% endblock content %}
