@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {%load static%}
-{% block title %} ~ Show{% endblock title %}
+{% block title %} | Show{% endblock title %}
 {% block content %}
 <style>
     #datat {border-collapse: collapse;width: 80%; margin-left:10%;margin-right:10% ; }    
@@ -27,7 +27,7 @@
             <td>{{ Customers.id }}</td>
             <td>{{Customers.First_name}}&nbsp;&nbsp;{{Customers.Last_name}}</td>
             <td>{{Customers.Address}}</td>
-            <td>{{Customers.DOBdate}}</td>
+            <td>{{Customers.DOB}}</td>
             <td>{{Customers.Email}}</td>
             <td>{{Customers.Contact}}</td>
             <td>

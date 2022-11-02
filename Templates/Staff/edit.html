@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {%load static%}
-{% block title %} ~ Edit{% endblock title %}
+{% block title %} | Edit{% endblock title %}
 {% block content %}
 <form method="POST" action="/update/{{Customer.id}}">
     {% csrf_token %}

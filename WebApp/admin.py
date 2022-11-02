@@ -9,8 +9,9 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ('id','First_name', 'Last_name','Address','DOB','Email','Contact')
 admin.site.register(Customer,CustomerAdmin)
 
-
-admin.site.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ('id','Title')
+admin.site.register(Topic,TopicAdmin)
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'image','people','discount','price','lista','listb','listc','listd','liste')

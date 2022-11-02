@@ -30,6 +30,8 @@ class Customer(models.Model):
 
     class Meta:  
         db_table = "Customer" 
+    def __str__(self):
+        return self.First_name
 
 class Topic(models.Model):  
     Title = models.CharField(max_length=100)     
@@ -49,3 +51,6 @@ class Service(models.Model):
     listc=models.CharField(max_length=100)
     listd=models.CharField(max_length=100,blank=True)
     liste=models.CharField(max_length=100,blank=True)
+
+    def __str__(self):
+        return self.title
