@@ -11,101 +11,44 @@
       <h2 class="row__sub">What fits your business the best?</h2>
     </div>
     <div class="row row--center row--margin">
-      <div class="col-md-4 col-sm-4 price-box price-box--purple">
+      {% for service in ourservice %}
+      <div class="col-md-4 col-sm-4 price-box price-box" style="margin-bottom:8% ;">
         <div class="price-box__wrap">
-          <div class="price-box__img"></div>
+          <div class="price-box__img">
+            <img class="price-box__img" src="{{service.image}}">
+          </div>
           <h1 class="price-box__title">
-            Startup
+            {{ service.title }}
           </h1>
           <p class="price-box__people">
-            1 - 100 people
+            {{ service.people }} Group
           </p>
           <h2 class="price-box__discount">
-            <span class="price-box__dollar">$</span>49<span class="price-box__discount--light">/mo</span>
+            <span class="price-box__dollar">₹</span>{{ service.discount }}<span
+              class="price-box__discount--light">/mo</span>
           </h2>
           <h3 class="price-box__price">
-            $65/mo
+            {{ service.price }}/mo
           </h3>
           <p class="price-box__feat">
             Features
           </p>
           <ul class="price-box__list">
-            <li class="price-box__list-el">1 License</li>
-            <li class="price-box__list-el">24h helpcenter</li>
-            <li class="price-box__list-el">No tasks limit</li>
-            <li class="price-box__list-el">No contractors limit </li>
+            <li class="price-box__list-el">{{ service.lista }}</li>
+            <li class="price-box__list-el">{{ service.listb }}</li>
+            <li class="price-box__list-el">{{ service.listc }}</li>
+            <li class="price-box__list-el">{{ service.listd }} </li>
+            <li class="price-box__list-el">{{ service.liste }} </li>
           </ul>
           <div class="price-box__btn">
-            <a class="btn btn--purple btn--width">Start now</a>
+            <a class="btn btn--purple btn--width" href="{% url 'client' %}">Start now</a>
           </div>
         </div>
       </div>
-      <!-- second -->
-      <div class="col-md-4 col-sm-4 price-box price-box--violet">
-        <div class="price-box__wrap">
-          <div class="price-box__img"></div>
-          <h1 class="price-box__title">
-            Business
-          </h1>
-          <p class="price-box__people">
-            100 - 500 people
-          </p>
-          <h2 class="price-box__discount">
-            <span class="price-box__dollar">$</span>149<span class="price-box__discount--light">/mo</span>
-          </h2>
-          <h3 class="price-box__price">
-            $225/mo
-          </h3>
-          <p class="price-box__feat">
-            Features
-          </p>
-          <ul class="price-box__list">
-            <li class="price-box__list-el">1 License</li>
-            <li class="price-box__list-el">24h helpcenter</li>
-            <li class="price-box__list-el">No tasks limit</li>
-            <li class="price-box__list-el">No contractors limit </li>
-          </ul>
-          <div class="price-box__btn">
-            <a  class="btn btn--violet btn--width">Start now</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- terzo -->
-      <div class="col-md-4 col-sm-4 price-box price-box--blue">
-        <div class="price-box__wrap">
-          <div class="price-box__img"></div>
-          <h1 class="price-box__title">
-            Corporate
-          </h1>
-          <p class="price-box__people">
-            500+ people
-          </p>
-          <h2 class="price-box__discount">
-            <span class="price-box__dollar">$</span>399<span class="price-box__discount--light">/mo</span>
-          </h2>
-          <h3 class="price-box__price">
-            $499/mo
-          </h3>
-          <p class="price-box__feat">
-            Features
-          </p>
-          <ul class="price-box__list">
-            <li class="price-box__list-el">1 License</li>
-            <li class="price-box__list-el">24h helpcenter</li>
-            <li class="price-box__list-el">No tasks limit</li>
-            <li class="price-box__list-el">No contractors limit </li>
-          </ul>
-          <div class="price-box__btn">
-            <a class="btn btn--blue btn--width">Start now</a>
-          </div>
-        </div>
-      </div>
-
-
+      {% endfor %}
+      <br><br>
 
     </div>
   </div>
 </div>
-
 {% endblock content %}

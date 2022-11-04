@@ -1,0 +1,122 @@
+{% extends 'Office\base.html' %}
+{%load static%}
+{% block title %} | Office{% endblock title %}
+{% block menu %}
+<li class="header__el header__el--blue"><a href="logout" class="btn btn--white">Logout →</a></li>
+{% endblock menu %}
+{% block content %}
+
+
+<style>
+    #datat {
+        border-collapse: collapse;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    #datat td,
+    #datat th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #datat tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #datat tr:hover {
+        background-color: #ddd;
+    }
+
+    #datat th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #d9edfe;
+        color: black;
+    }
+</style>
+<div class="sect sect--white">
+    <div class="container">
+        <h1 class="row__title"> Our Client </h1>
+        <h2 class="row__sub">We believe in turning clients into <b>Family</b></h2>
+    </div>
+    <div class="row row--margin">
+        <table id="datat">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Date Of Birth</th>
+                    <th>Email</th>
+                    <th>Contact No.</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Customers in Customer %}
+                <tr>
+                    <td>{{ Customers.id }}</td>
+                    <td>{{Customers.First_name}}&nbsp;&nbsp;{{Customers.Last_name}}</td>
+                    <td>{{Customers.Address}}</td>
+                    <td>{{Customers.DOB}}</td>
+                    <td>{{Customers.Email}}</td>
+                    <td>{{Customers.Contact}}</td>
+                    <td> <a href="/edit/{{ Customers.id }}">Edit</a></td>
+                    <td> <a href="/delete/{{Customers.id}}">Delete</a> </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 10%;" class="btn btn--width"><a href="/emp" style="color: white">Add New</a></button>
+    </div>
+    <br>
+    <div class="container">
+        <h1 class="row__title">
+            Our Client Message List
+        </h1>
+        <h2 class="row__sub">Thank them for choosing to connect with us</h2>
+    </div>
+    <div class="row row--margin">
+        <table id="datat">
+            <thead>
+                <tr>
+                    <th> ID</th>
+                    <th> Name</th>
+                    <th>Email</th>
+                    <th>Contact No.</th>
+                    <th>Message</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Topics in Contactus %}
+                <tr>
+                    <td>{{ Topics.id }}</td>
+                    <td>{{Topics.First_Name}} {{Topics.Last_Name}}</td>
+                    <td>{{Topics.Email}}</td>
+                    <td>{{Topics.Contact}}</td>
+                    <td>{{Topics.Message}}</td>
+                    <td><a href="/edit/{{ Topics.id }}">Edit</a></td>
+                    <td><a href="/delete/{{Topics.id}}">Delete</a></td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 10%;" class="btn btn--width"><a href="/emp" style="color: white">Add New</a></button>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

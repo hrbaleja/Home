@@ -1,0 +1,2 @@
+Required Package
+pip install django-admin-interface

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Customer,Topic
+from .models import Customer,Topic,ourservice
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 
@@ -52,4 +52,28 @@ class Topicform(forms.ModelForm):
 
     class Meta:
         model = Topic
+        fields ="__all__"
+class ourserviceform(forms.ModelForm):    
+    title = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Title',  'class': 'form__field form__text', }))
+    people = forms.CharField(widget=forms.NumberInput(
+        attrs={'placeholder': 'People',  'class': 'form__field form__text', }))
+    discount = forms.CharField(widget=forms.NumberInput(
+         attrs={'placeholder': 'Discount Price',  'class': 'form__field form__text', }))
+    price = forms.CharField(widget=forms.NumberInput(
+        attrs={'placeholder': 'Price',  'class': 'form__field form__text', }))
+    lista = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Features',  'class': 'form__field form__text', }))
+    listb = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Features',  'class': 'form__field form__text', }))
+    listc = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Features',  'class': 'form__field form__text', }))
+    listd = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Features',  'class': 'form__field form__text', }))
+    liste = forms.CharField(widget=forms.TextInput(
+        attrs={'placeholder': 'Features',  'class': 'form__field form__text', }))
+
+   
+    class Meta:
+        model = ourservice
         fields ="__all__"

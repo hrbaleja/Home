@@ -18,6 +18,7 @@
             <th>Date Of Birth</th>
             <th>Email</th>
             <th>Contact No.</th>
+            <th>Edit</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -30,10 +31,8 @@
             <td>{{Customers.DOB}}</td>
             <td>{{Customers.Email}}</td>
             <td>{{Customers.Contact}}</td>
-            <td>
-                <a href="/edit/{{ Customers.id }}">Edit</a>&nbsp;&nbsp;
-                <a href="/delete/{{Customers.id}}">Delete</a>
-            </td>
+            <td>             <a href="/edit/{{ Customers.id }}">Edit</a></td>
+              <td>  <a href="/delete/{{Customers.id}}">Delete</a>            </td>
         </tr>
         {% endfor %}
     </tbody>

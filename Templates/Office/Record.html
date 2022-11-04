@@ -1,0 +1,161 @@
+{% extends 'Office\base.html' %}
+{%load static%}
+{% block title %} | Office{% endblock title %}
+{% block menu %}
+<li class="header__el header__el--blue"><a href="logout" class="btn btn--white">Logout →</a></li>
+{% endblock menu %}
+{% block content %}
+
+
+<style>
+    #datat {
+        border-collapse: collapse;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    #datat td,
+    #datat th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #datat tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    #datat tr:hover {
+        background-color: #ddd;
+    }
+
+    #datat th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #d9edfe;
+        color: black;
+    }
+</style>
+<div class="sect sect--white">
+    <div class="container">
+        <h1 class="row__title"> Our Record </h1>
+        <h2 class="row__sub">We believe in turning clients into Family</h2>
+    </div>
+    <div class="row row--margin">
+        <table id="datat">
+            <thead id="datat">
+                <tr>
+                    <th>Topics ID</th>
+                    <th>Topics Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Topics in Topic %}
+                <tr>
+                    <td>{{ Topics.id }}</td>
+                    <td>{{Topics.Title}}</td>
+                    <td><a href="/edit/{{ Topics.id }}">Edit</a></td>
+                    <td><a href="/delete/{{Topics.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 10%;" class="btn btn--width"><a href="/emp" style="color: white">Add
+                New</a></button>
+    </div>
+    <div class="container">
+        <h1 class="row__title"> Our Area </h1>
+        <h2 class="row__sub">Sneak peeks from our writings</h2>
+    </div>
+    <div class="row row--margin">
+        <table id="datat">
+            <thead id="datat">
+                <tr>
+                    <th>Topics ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Group</th>
+                    <th>Time</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Area in ourArea %}
+                <tr>
+                    <td>{{ Area.id }}</td>
+                    <td>{{Area.Title}}</td>
+                    <td>{{ Area.image }}</td>
+                    <td>{{Area.Category}}</td>
+                    <td>{{ Area.Group }}</td>
+                    <td>{{Area.Time}}</td>
+                    <td><a href="/edit/{{ Area.id }}">Edit</a></td>
+                    <td><a href="/delete/{{Area.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 10%;" class="btn btn--width"><a href="/emp" style="color: white">Add
+                New</a></button>
+    </div>
+    <div class="container">
+        <h1 class="row__title"> Our Service </h1>
+        <h2 class="row__sub">We believe in turning clients into Family</h2>        
+    </div>
+    <div class="row row--margin">
+        <table id="datat">
+            <thead id="datat">
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>People</th>
+                    <th>Discount </th>
+                    <th>Price</th>
+                    <th>List</th>
+                    <th>List</th>
+                    <th>List</th>
+                    <th>List</th>
+                    <th>List</th>
+                    <th>Action</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for Service in ourservice %}
+                <tr>
+                    <td>{{ Service.id }}</td>
+                    <td>{{Service.title}}</td>
+                    <td>{{ Service.image }}</td>
+                    <td>{{ Service.people }}</td>
+                    <td>{{Service.discount}}</td>
+                    <td>{{ Service.price }}</td>
+                    <td>{{Service.lista}}</td>
+                    <td>{{ Service.listb }}</td>
+                    <td>{{Service.listc}}</td>
+                    <td>{{ Service.listd }}</td>
+                    <td>{{Service.liste}}</td>
+                    <td><a href="/edit/{{ Service.id }}">Edit</a></td>
+                    <td><a href="/delete/{{Service.id}}">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <button style="margin-left: 10%;" class="btn btn--width"><a href="/emp" style="color: white">Add
+                New</a></button>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

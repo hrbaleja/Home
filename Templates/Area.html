@@ -11,61 +11,25 @@
       </h1>
       <h2 class="row__sub">Sneak peeks from our writings</h2>
     </div>
-
-    <div class="row row--margin">
-      {% for Area in ourArea %}
+   
+    <div class="row row--margin">  {% for Area in ourArea %}
       <div class="col-md-6 article-pre__col">
         <div class="article-pre ">
-          <div class="article-pre__img article-pre__img--first"></div>
+          <div class="article-pre__img article-pre__img--raw"></div>
           <h2 class="article-pre__info">
-            <span class="article-pre__cat">{{ Area.Category }} • </span><span class="article-pre__aut"> {{ Area.Group }}</span> <span
-              class="article-pre__date"> -{{ Area.Time }} read</span>
-          </h2>
+            <span class="article-pre__cat">{{ Area.Category }}  •  </span><span class="article-pre__aut"> {{ Area.Group}}</span> <span class="article-pre__date"> -{{ Area.Time }} Read</span>
+          </h2> <a href="{% url 'Service' %}">
           <h1 class="article-pre__title">{{ Area.Title }}
-            <a href="{% url 'Service' %}"><span
-              class="article-pre__arrow--purple"> →</span></a></h1>
-            </div>
-        {% endfor %}
-      </div>
-
-      <div class="col-md-6 article-pre__col">
-        <div class="article-pre ">
-          <div class="article-pre__img article-pre__img--second"></div>
-          <h2 class="article-pre__info">
-            <span class="article-pre__cat">Pricing • </span><span class="article-pre__aut"> by Josh Ford</span> <span
-              class="article-pre__date"> - 5 mins read</span>
-          </h2>
-          <h1 class="article-pre__title">Rich Thornett & Dan Coderholm about Dribbble in early 2009<span
-              class="article-pre__arrow--purple">→</span></h1>
-          </div>
-      </div>
-    </div>
+           <span class="article-pre__arrow--purple"> →</span></a>
+          </h1>      
+        </div> 
+      </div>{% endfor %}
+    </div> 
+    
     <div class="row">
-      <div class="col-md-6 article-pre__col">
-        <a href="#" class="article-pre ">
-          <div class="article-pre__img article-pre__img--fourth"></div>
-          <h2 class="article-pre__info">
-            <span class="article-pre__cat">Success Stories • </span><span class="article-pre__aut"> by Andrew
-              Lincoln</span> <span class="article-pre__date"> - 5 mins read</span>
-          </h2>
-          <h1 class="article-pre__title">Steward Butterfield told us about his startup Slack<span
-              class="article-pre__arrow--purple"> →</span></h1>
-        </a>
-      </div>
-
-      <div class="col-md-6 article-pre__col">
-        <a href="#" class="article-pre ">
-          <div class="article-pre__img article-pre__img--third"></div>
-          <h2 class="article-pre__info">
-            <span class="article-pre__cat">Protips • </span><span class="article-pre__aut"> by Ann Timothy</span> <span
-              class="article-pre__date"> - 5 mins read</span>
-          </h2>
-          <h1 class="article-pre__title">How to improve analytics using few tools in Bricks<span
-              class="article-pre__arrow--purple"> →</span></h1>
-        </a>
-      </div>
     </div>
   </div>
 </div>
+
 
 {% endblock content %}

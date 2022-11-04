@@ -44,11 +44,10 @@
     <div class="header__menu">
       <nav id="navbar" class="header__nav collapse">
         <ul class="header__elenco">
-          <li class="header__el"><a href="{% url 'index' %}">Home</a></li>
-          <li class="header__el"><a href="{% url 'Service' %}">Service</a></li>
-          <li class="header__el"><a href="{% url 'Area' %}">Area</a></li>
-          <li class="header__el"><a href="{% url 'About' %}">About Us</a></li>
-          <li class="header__el"><a href="{% url 'Contact' %}">Contact Us</a></li>
+          <li class="header__el"><a href="{% url 'office' %}">Home</a></li>
+          <li class="header__el"><a href="{% url 'clientoffice' %}">Client</a></li>
+          <li class="header__el"><a href="{% url 'recordoffice' %}">Record</a></li>
+          
           {% block menu %}{% endblock menu %}
 
         </ul>

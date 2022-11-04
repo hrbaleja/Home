@@ -19,7 +19,7 @@
              
                 <p class="contacts__address">
               198, Near K.K.V. Hall,<br>
-              150 Feet Ring Road,&nbsp;Rajkot<br>
+              150 Feet Ring Road,Rajkot<br>
               Gujarat &nbsp;India&nbsp;360005
             </p>
            
@@ -41,38 +41,34 @@
           
             <div class="form-group">
               <select class="form__field form__select">
-                <option selected value>Choose topic*</option>
-                <option value=1>Pricing</option>
-                <option value=2>Success Stories</option>
+                <option selected disabled='True'>Choose Query Related Area</option>
+                {% for Topi in Topic %}
+                <option > {{Topi.id}}--{{Topi.Title}}</option>
+                 {% endfor %}
+                
               </select>
               </div>
               <div class="form-group">
-                
-               <input name="Topic" type="text" placeholder="Topic*" class="form__field form__text"></input>
-             
-             
-             </div>
-
-             <div class="form-group">
                <div class="form__field--half">
-              <input name="First_Name" type="text" placeholder="Name*" class="form__field form__text"></input>
+              <input name="First_Name" type="text" placeholder="Name*" class="form__field form__text" required></input>
                </div>
             <div class="form__field--half">
-            <input name="Last_Name" type="text" placeholder="Surname" class="form__field form__text"></input>
+            <input name="Last_Name" type="text" placeholder="Surname*" class="form__field form__text" required></input>
             </div>
             </div>
         
           <div class="form-group">
             <div class="form__field--half">
-              <input name="Email" type="text" placeholder="Email address*" class="form__field form__text"></input>
+              <input name="Email" type="Email"   placeholder="Email address*" class="form__field form__text" required></input>
             </div>
            <div class="form__field--half">
-            <input name="Contact" type="text" placeholder="Phone number" class="form__field form__text"></input>
+            <input name="Contact" type="text" pattern="[6-9]{1}[0-9]{9}" 
+            title="Please enter valid 10 digit phone number " placeholder="Phone number*" class="form__field form__text" required></input>
       </div>
             </div>
     
             <div class="form-group">
-              <textarea name="Message" type="text" placeholder="Your messsage*" class="form__field form__textarea"></textarea>
+              <textarea name="Message" type="text"  placeholder="Your messsage*" class="form__field form__textarea" required></textarea>
               <button class="btn btn--up btn--width" type="submit">Submit</button>
             </div>
           </form>

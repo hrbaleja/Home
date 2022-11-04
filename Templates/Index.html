@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
+{%load static%}
 {% block menu %}
-
-   
+<li class="header__el"><a href="{% url 'login' %}"><img src="{% static 'Images/user.png' %}"></a></li>   
 {% endblock menu %}
 {% block content %}
 
